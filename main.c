@@ -211,7 +211,7 @@ int main()
         return -1;
     }
 
-    uintptr_t buffers_addr = tracer_call(&tracer, calloc_addr, 3, sizeof(uint32_t), 0, 0, 0, 0); // TODO: remove the 3*
+    uintptr_t buffers_addr = tracer_call(&tracer, calloc_addr, 3, sizeof(uint32_t), 0, 0, 0, 0);
     if (buffers_addr == 0 || buffers_addr == -1)
     {
         notifyf_printf("Failed to allocate pincode buffer");
