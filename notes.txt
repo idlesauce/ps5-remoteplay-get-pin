@@ -1,0 +1,25 @@
+Notes from looking into what decides if the remote play toggle is enabled in the settings:
+
+First I tried looking in the rnps js code but its obfuscated (or just aggressively minified idk) - quickly abandoned that
+
+sceShellCoreUtilGetRemotePlayStatus and sceUserServiceGetIsRemotePlayAllowed returns the same for both a legit and offact user - so thats not it
+these two were the only ones imported by the eboot.bin that seemed relevant, most of the imports are in the c# libs (& libReactNative.Modules.Vsh.sprx), tried a couple but nah, most are irrelevant
+
+Recorded every key accessed with shellui's libkernel's __sys_regmgr_call as i switched accounts and went into the remote play settings - didnt seem like any of those are responsible
+I did try setting these keys tho to see if they do anything but no, there are some other interesting keys but they already had the same value as my legit account
+SCE_REGMGR_ENT_KEY_USER_01_16_NP_online_id(4), "offact"
+SCE_REGMGR_ENT_KEY_USER_01_16_NP_np_id(4), "offact@a1.us.np.playstation.net"
+SCE_REGMGR_ENT_KEY_USER_01_16_NP_country_code(4), "us"
+SCE_REGMGR_ENT_KEY_USER_01_16_signin_id(4), "offact@gmail.com"
+SCE_REGMGR_ENT_KEY_USER_01_16_login_flag(4), 0x1006
+SCE_REGMGR_ENT_KEY_USER_01_16_NP_sub_account(4), 2
+SCE_REGMGR_ENT_KEY_USER_01_16_NP_date_of_birth(4), "2000-01-01"
+SCE_REGMGR_ENT_KEY_USER_01_16_NP_age(4), 0x18
+(+ the ones that offact sets)
+
+I put a breakpoint to every exported function in libSceRemoteplay.sprx - nothing hit as i entered settings & remote play menu, only when using one of the three options is when something got called
+on an unactivated account sceRemoteplayGeneratePinCode doesnt get called as you enter the menu so the error code doesnt come from it.
+
+Tried suspending the remote play daemon and going into the remote play settings to see if its some ipc but no
+
+I think it was SCE_REGMGR_ENT_KEY_USER_01_16_NP_online_id that made it so the username shows when you connect
