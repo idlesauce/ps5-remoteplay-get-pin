@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    paths:
+      - '**'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  attestations: write
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
+      run: |
+        sudo apt update
+        sudo apt install bash clang-15 lld-15
+        sudo apt install build-essential cmake pkg-config
+
+    - name: Install toolchain
+      run: |
+        wget https://github.com/ps5-payload-dev/pacbrew-repo/releases/latest/download/ps5-payload-dev.tar.gz
+        sudo tar xf ps5-payload-dev.tar.gz -C /
+
+    - name: Build
+      run: PS5_PAYLOAD_SDK=/opt/ps5-payload-sdk make
+
+    - name: Attest
+      uses: actions/attest-build-provenance@v1
+      continue-on-error: true  # this will fail if the repo is private
+      with: 
+        subject-path: ./rp-get-pin.elf
+
+    - name: Upload
+      uses: actions/upload-artifact@v3
+      with:
+        name: rp-get-pin
+        path: ./rp-get-pin.elf
+        if-no-files-found: error
