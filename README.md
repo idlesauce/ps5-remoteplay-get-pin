@@ -14,3 +14,5 @@ Apparently most of the checks are just in ShellUI, the `sceRemoteplayGeneratePin
         - To see stdout you can inject like this: `socat -t 99999999 - TCP:<yourps5ip>:9021 < rp-get-pin.elf`
     - Only the displayed account id will be accepted when pairing, which is the currently logged in user.
     - If you want to cancel the pairing you can send the payload again.
+3. Connect with [chiaki](https://sr.ht/~thestr4ng3r/chiaki/) or [chiaki-ng](https://streetpea.github.io/chiaki-ng/)
+    - Reportedly the official Remote Play app doesnt work. I havent had a chance try it myself/look into why yet but this may not be something fixable.
