@@ -16,4 +16,4 @@ Apparently most of the checks are just in ShellUI, the `sceRemoteplayGeneratePin
     - Only the displayed account id will be accepted when pairing, which is the currently logged in user.
     - If you want to cancel the pairing you can send the payload again.
 1. Connect with [chiaki](https://sr.ht/~thestr4ng3r/chiaki/) or [chiaki-ng](https://streetpea.github.io/chiaki-ng/)
-    - Reportedly the official Remote Play app doesnt work. I havent had a chance try it myself/look into why yet but this may not be something fixable.
+    - The official Remote Play app may also work (havent tried it myself yet). For this you'll need to set your proper account id associated with your psn account in offact.
