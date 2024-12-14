@@ -23,4 +23,4 @@ Full guide on setting this up from Modded Warfare: https://www.youtube.com/watch
 ## Thanks
 - Nicit - testing
 - [astrelsky](https://github.com/astrelsky/) - ptrace examples
-- [jonh-tornblom](https://github.com/john-tornblom/) - sdk and ptrace examples
+- [john-tornblom](https://github.com/john-tornblom/) - sdk and ptrace examples
