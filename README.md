@@ -10,7 +10,6 @@ Full guide on setting this up from Modded Warfare: https://www.youtube.com/watch
     - Download: https://github.com/ps5-payload-dev/websrv/releases/
     - The auto-generated id is fine to use, you dont need a real psn id if you're fine with using chiaki.
     - To be able to use the official Remote Play app you'll need to set your proper account id associated with your psn account in offact.
-    - On very low firmwares the websrv frontend may be broken in the ps5's browser, for the time being you can open offact by going to `http://<yourps5ip>:8080/` on your pc.
 1. Reboot the console if you have not done so since you offline activated your account.
     - From a quick test I did this step wasn't necessary, however others reported this as being a required step. You try sending the payload right away, pairing and reboot only if the pairing/connecting fails.
 1. Inject this payload using john-tornblom's elf loader on port 9021.
