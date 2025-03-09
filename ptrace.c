@@ -106,8 +106,6 @@ static void set_args(reg_t *restrict regs, uintptr_t a, uintptr_t b, uintptr_t c
 
 #define LIBKERNEL_HANDLE 0x2001
 
-unsigned long kernel_dynlib_mapbase_addr(int pid, unsigned int handle); // why is this missing from kernel.h?
-
 uintptr_t tracer_call(tracer_t *restrict self, uintptr_t addr, uintptr_t a, uintptr_t b, uintptr_t c, uintptr_t d, uintptr_t e, uintptr_t f)
 {
     if (addr == 0)
